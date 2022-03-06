@@ -116,13 +116,12 @@ int main(){
             break;
         }
     }
-    print_board(best);
-
     auto stop = chrono::high_resolution_clock::now();
-
     auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
+
+    print_board(best);
     
-    cout << "Execution time in C++: " << duration.count() << endl;
+    cout << "Execution time in C++: " << duration.count() << " seconds\n";
 
     return 0;
 }
