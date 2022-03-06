@@ -1,11 +1,11 @@
 run: 
 	chmod +x game.py
-	python game.py
+	python3 game.py
 
 activate:
 	( \
 		python3 -m venv venv; \
-		source venv/bin/activate; \
+		. venv/bin/activate; \
 		pip install -r requirements.txt; \
 	)
 
