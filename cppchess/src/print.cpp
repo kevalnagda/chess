@@ -55,13 +55,13 @@ void print_row(char row[]){
         
         cout << "  ";
     }
-    cout << '|' << endl;
-    cout << "      +-----+-----+-----+-----+-----+-----+-----+-----+" << endl;
+    cout << '|' << "\n";
+    cout << "      +-----+-----+-----+-----+-----+-----+-----+-----+" << "\n";
 }
 
 
 void print_board(Node& root){
-    cout << "      +-----+-----+-----+-----+-----+-----+-----+-----+" << endl;
+    cout << "      +-----+-----+-----+-----+-----+-----+-----+-----+" << "\n";
     int i;
     int col = 8;
     for(i=2; i<10; i++){
@@ -69,5 +69,5 @@ void print_board(Node& root){
         col--;
         print_row(root->board[i]);
     }
-    cout << "         A     B     C     D     E     F     G     H   " << endl << endl;
+    cout << "         A     B     C     D     E     F     G     H   " << "\n\n";
 }

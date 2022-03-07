@@ -41,7 +41,7 @@ int main(){
     Node root = new tNode;
     init_materials(root->materials);
     root->cur_side = 0; // 0 denotes human/player side
-    print_board(root);
+    // print_board(root);
 
     string user_input;
     Node best;
@@ -61,12 +61,7 @@ int main(){
         root->cur_side = 0;
 
         next_move(root, 0);
-
-        
-
         minimax_alpha_beta(root, best, 0, 0, LOWEST_SCORE, HIGHEST_SCORE);
-
-        
 
         // print_board(best);
 
@@ -102,7 +97,6 @@ int main(){
 
         static_evals = 0;
 
-        // int a, b;
         for(a=0; a<12; a++){
             for(b=0; b<12; b++){
                 root->board[a][b] = best->board[a][b];
@@ -122,13 +116,12 @@ int main(){
             break;
         }
     }
-    // print_board(best);
-
     auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
 
-    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+    print_board(best);
     
-    cout << "Execution time: " << duration.count() << endl;
+    cout << "Execution time in C++: " << duration.count() << " seconds\n";
 
     return 0;
 }
