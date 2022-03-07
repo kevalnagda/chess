@@ -174,7 +174,7 @@ def main():
         #show_board()
     print('Execution time is ', time.time()-start_)
     print('moves played are', moves)
-    #show_board()
+    show_board()
     
     print(board.result())
     #return ret
