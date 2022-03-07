@@ -9,10 +9,9 @@ import chess.pgn
 import time
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
 from fen2pil import draw
-from PIL import Image  
 import PIL  
 
-depth,moves = 5, []
+depth,moves = 2, []
 
 def evaluate_board():
     if board.is_checkmate():
@@ -192,11 +191,9 @@ def show_board():
             light_color=(255, 253, 208),
             dark_color=(76, 153, 0)
         )
-
-
-    picture = Image.open(r'Downloads\3.jpg')  
-    picture = pil_image.save("board_game.jpg") 
-
+    print(type(pil_image))
+    pil_image.save("board_game.jpg") 
+    print(size(pil_image))
     #pil_image.show()
     # im = draw_board(fen=board.fen())
     # im.save('game_board.png')
