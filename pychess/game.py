@@ -11,6 +11,7 @@ from IPython.display import SVG
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
 #import fen
 
+depth,moves = 4, []
 
 def evaluate_board():
     if board.is_checkmate():
@@ -118,11 +119,11 @@ def selectmove(depth):
 
 
 # Searching minimax Move
-def ai_move():
+def ai_move(player):
     print('in ai move')
-    move = selectmove(3)
-    print(move)
-    #speak(move)
+    move = selectmove(depth)
+    print('{} plays {}'.format(player, move))
+    moves.append(move)
     board.push(move)
 
 def main():
@@ -142,7 +143,6 @@ def main():
         ai_black = False
     start_ = time.time()
     while True:
-        cnt+=1
         if cnt ==10:
             break
         # if ai_black and current_move_white:
@@ -150,10 +150,10 @@ def main():
         #     board.push_san(move)
         #     current_move_white = False
         if current_move_white:
-            ai_move()
+            ai_move('white')
             current_move_white = False
         else:
-            ai_move()
+            ai_move('black')
             current_move_white = True
         # elif ai_black and not current_move_white:
         #     ai_move()
@@ -170,8 +170,10 @@ def main():
             print("Its a draw by insufficient material")
         elif board.is_check():
             print("Check")
+        cnt+=1
         #show_board()
     print('Execution time is ', time.time()-start_)
+    print('moves played are', moves)
     show_board()
     print(board.fen())
     print(board.result())
