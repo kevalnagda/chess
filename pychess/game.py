@@ -11,7 +11,7 @@ from IPython.display import SVG
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
 #import fen
 
-depth,moves = 4, []
+depth,moves = 5, []
 
 def evaluate_board():
     if board.is_checkmate():
@@ -67,7 +67,7 @@ def evaluate_board():
 def alphabeta(alpha, beta, depthleft):
     bestscore = -9999
     if (depthleft == 0):
-        return quiesce(alpha, beta)
+        return evaluate_board()#quiesce(alpha, beta)
     for move in board.legal_moves:
         board.push(move)
         score = -alphabeta(-beta, -alpha, depthleft - 1)
