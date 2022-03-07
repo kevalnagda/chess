@@ -9,6 +9,8 @@ import chess.pgn
 import time
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
 from fen2pil import draw
+from PIL import Image  
+import PIL  
 
 depth,moves = 5, []
 
@@ -191,7 +193,11 @@ def show_board():
             dark_color=(76, 153, 0)
         )
 
-    pil_image.show()
+
+    picture = Image.open(r'Downloads\3.jpg')  
+    picture = pil_image.save("board_game.jpg") 
+
+    #pil_image.show()
     # im = draw_board(fen=board.fen())
     # im.save('game_board.png')
     #chess.svg.board(board=board, size=700)#, mimetype='image/svg+xml'
