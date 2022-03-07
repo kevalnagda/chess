@@ -7,9 +7,8 @@ import time
 import traceback
 import chess.pgn
 import time
-from IPython.display import SVG
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
-#import fen
+from fen2pil import draw
 
 depth,moves = 5, []
 
@@ -174,14 +173,25 @@ def main():
         #show_board()
     print('Execution time is ', time.time()-start_)
     print('moves played are', moves)
-    show_board()
-    print(board.fen())
+    #show_board()
+    
     print(board.result())
     #return ret
 
 def show_board():
     #board = chess.Board()
     print(board)
+
+    fen = board.fen()
+
+    pil_image = draw.transform_fen_pil(
+            fen=fen,
+            board_size=480,
+            light_color=(255, 253, 208),
+            dark_color=(76, 153, 0)
+        )
+
+    pil_image.show()
     # im = draw_board(fen=board.fen())
     # im.save('game_board.png')
     #chess.svg.board(board=board, size=700)#, mimetype='image/svg+xml'
