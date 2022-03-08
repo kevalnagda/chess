@@ -11,7 +11,7 @@ using namespace std;
 
 #define LOWEST_SCORE -10000
 #define HIGHEST_SCORE 10000
-#define MAX_DEPTH 3
+#define MAX_DEPTH 2
 
 
 // ==================== NODE AND BOARD STRUCTURE TYPE ==============================
