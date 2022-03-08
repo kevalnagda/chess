@@ -11,7 +11,8 @@ from piece_values import pawntable, knightstable, bishopstable, queenstable, roo
 from fen2pil import draw
 import PIL  
 
-depth,moves = 2, []
+depth, number_of_moves = 3, 20
+moves = []
 
 def evaluate_board():
     if board.is_checkmate():
@@ -121,8 +122,9 @@ def selectmove(depth):
 # Searching minimax Move
 def ai_move(player):
     print('in ai move')
+    start2_ = time.time()
     move = selectmove(depth)
-    print('{} plays {}'.format(player, move))
+    print('{} plays {} in {} seconds'.format(player, move,time.time()-start2_))
     moves.append(move)
     board.push(move)
 
@@ -143,18 +145,19 @@ def main():
         ai_black = False
     start_ = time.time()
     while True:
-        if cnt ==10:
+        if cnt == number_of_moves:
             break
-        # if ai_black and current_move_white:
-        #     move = input('Enter move ')
-        #     board.push_san(move)
-        #     current_move_white = False
+        
         if current_move_white:
             ai_move('white')
             current_move_white = False
         else:
             ai_move('black')
             current_move_white = True
+        # if ai_black and current_move_white:
+        #     move = input('Enter move ')
+        #     board.push_san(move)
+        #     current_move_white = False
         # elif ai_black and not current_move_white:
         #     ai_move()
         #     current_move_white = True
@@ -174,17 +177,13 @@ def main():
         #show_board()
     print('Execution time is ', time.time()-start_)
     print('moves played are', moves)
-    show_board()
-    
+    #show_board()
     print(board.result())
-    #return ret
 
 def show_board():
-    #board = chess.Board()
     print(board)
 
     fen = board.fen()
-
     pil_image = draw.transform_fen_pil(
             fen=fen,
             board_size=480,
@@ -194,10 +193,6 @@ def show_board():
     print(type(pil_image))
     pil_image.save("board_game.jpg") 
     print(size(pil_image))
-    #pil_image.show()
-    # im = draw_board(fen=board.fen())
-    # im.save('game_board.png')
-    #chess.svg.board(board=board, size=700)#, mimetype='image/svg+xml'
 
 # Main Function
 if __name__ == '__main__':
