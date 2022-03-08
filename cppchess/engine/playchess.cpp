@@ -17,10 +17,11 @@ int main(void) {
 	Move move;
 	bool found;
 	int moves = 20;
+	int depth = 4;
 
 	// Initialize players
-	AIPlayer black(BLACK, 3);
-	AIPlayer white(WHITE, 3);
+	AIPlayer black(BLACK, depth);
+	AIPlayer white(WHITE, depth);
 
 	// setup board
 	board.initDefaultSetup();
