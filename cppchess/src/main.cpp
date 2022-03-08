@@ -117,11 +117,11 @@ int main(){
         }
     }
     auto stop = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
     print_board(best);
     
-    cout << "Execution time in C++: " << duration.count() << " seconds\n";
+    cout << "Execution time in C++: " << float(duration.count())/1000.0 << " seconds\n";
 
     return 0;
 }
