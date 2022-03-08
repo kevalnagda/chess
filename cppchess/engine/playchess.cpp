@@ -51,7 +51,7 @@ int main(void) {
 
 		// execute move
 		board.move(move);
-		// move.print();
+		move.print();
 
 		// opponents turn
 		turn = TOGGLE_COLOR(turn);
