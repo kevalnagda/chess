@@ -7,10 +7,11 @@ import time
 import traceback
 import chess.pgn
 import time
-from IPython.display import SVG
 from piece_values import pawntable, knightstable, bishopstable, queenstable, rookstable,kingstable
-#import fen
+from fen2pil import draw
+import PIL  
 
+depth,moves = 2, []
 
 def evaluate_board():
     if board.is_checkmate():
@@ -66,7 +67,7 @@ def evaluate_board():
 def alphabeta(alpha, beta, depthleft):
     bestscore = -9999
     if (depthleft == 0):
-        return quiesce(alpha, beta)
+        return evaluate_board()#quiesce(alpha, beta)
     for move in board.legal_moves:
         board.push(move)
         score = -alphabeta(-beta, -alpha, depthleft - 1)
@@ -118,11 +119,11 @@ def selectmove(depth):
 
 
 # Searching minimax Move
-def ai_move():
+def ai_move(player):
     print('in ai move')
-    move = selectmove(3)
-    print(move)
-    #speak(move)
+    move = selectmove(depth)
+    print('{} plays {}'.format(player, move))
+    moves.append(move)
     board.push(move)
 
 def main():
@@ -142,7 +143,6 @@ def main():
         ai_black = False
     start_ = time.time()
     while True:
-        cnt+=1
         if cnt ==10:
             break
         # if ai_black and current_move_white:
@@ -150,10 +150,10 @@ def main():
         #     board.push_san(move)
         #     current_move_white = False
         if current_move_white:
-            ai_move()
+            ai_move('white')
             current_move_white = False
         else:
-            ai_move()
+            ai_move('black')
             current_move_white = True
         # elif ai_black and not current_move_white:
         #     ai_move()
@@ -170,16 +170,31 @@ def main():
             print("Its a draw by insufficient material")
         elif board.is_check():
             print("Check")
+        cnt+=1
         #show_board()
     print('Execution time is ', time.time()-start_)
+    print('moves played are', moves)
     show_board()
-    print(board.fen())
+    
     print(board.result())
     #return ret
 
 def show_board():
     #board = chess.Board()
     print(board)
+
+    fen = board.fen()
+
+    pil_image = draw.transform_fen_pil(
+            fen=fen,
+            board_size=480,
+            light_color=(255, 253, 208),
+            dark_color=(76, 153, 0)
+        )
+    print(type(pil_image))
+    pil_image.save("board_game.jpg") 
+    print(size(pil_image))
+    #pil_image.show()
     # im = draw_board(fen=board.fen())
     # im.save('game_board.png')
     #chess.svg.board(board=board, size=700)#, mimetype='image/svg+xml'
