@@ -9,9 +9,9 @@ using namespace std;
 #define MAIN_H_INCLUDED
 
 
-#define LOWEST_SCORE -10000
-#define HIGHEST_SCORE 10000
-#define MAX_DEPTH 2
+#define LOWEST_SCORE -1000000
+#define HIGHEST_SCORE 1000000
+#define MAX_DEPTH 3
 
 
 // ==================== NODE AND BOARD STRUCTURE TYPE ==============================

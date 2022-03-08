@@ -45,7 +45,7 @@ int main(){
 
     string user_input;
     Node best;
-    int epochs = 5;
+    int epochs = 25;
     auto start = chrono::high_resolution_clock::now();
     while(epochs--){
 

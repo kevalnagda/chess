@@ -54,3 +54,29 @@ double minimax_alpha_beta(Node& root, Node& best, int depth, bool state, double 
         return beta;
     }
 }
+
+
+// double minimax_alpha_beta(Node& root, Node& best, int depth, bool state, double alpha, double beta){
+//     double bestscore = -9999;
+//     if(depth >= MAX_DEPTH || root->next.size() == 0) {
+//         static_evals++;
+//         return static_eval(root);
+//     }
+//     vector<Node>::iterator it;
+//     for(it=root->next.begin(); it!=root->next.end(); it++) {
+//         double val = -minimax_alpha_beta(*it, best, depth+1, 0, -beta, -alpha);
+//         if(depth >= MAX_DEPTH || root->next.size() == 0) {
+//             best = *it;
+//         }
+//         if(alpha >= beta || val >= beta) {
+//             return val;
+//         }
+//         if(val > bestscore) {
+//             bestscore = val;
+//         }
+//         if(val > alpha) {
+//             alpha = val;
+//         }
+//     }
+//     return bestscore;
+// }
